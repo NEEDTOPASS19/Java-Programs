@@ -1,0 +1,74 @@
+/*Gregory Thornton E01428586
+ *COSC 314 Winter  2018  Janurary 23, 2018
+ *Lab 1
+ *This Lab prompts user for some number n and generates numbers 1 to n,
+ *then prompts for a subset of length k to be generated.
+ *The program then generates a binary string for 
+ *each position in the set and uses the binary string
+ * to identify if the number is in the set or not.
+ */
+import java.util.*;
+
+public class SubsetLab1 {
+
+	public static void main(String[] args) {
+		int set[], subset, bincount = 0, binary[], num1s = 0;
+		Scanner keyb = new Scanner(System.in);
+
+		System.out.println("Enter a number to generate the set:");
+		set = new int[keyb.nextInt()]; 							// create of size n (entered number)
+
+		for (int i = 0; i < set.length; i++) {					// generate the set
+			set[i] = i + 1;
+		}
+
+		System.out.println("Enter a number to generate the subset of the entered set:");
+		subset = keyb.nextInt(); 								// subsets to generate
+
+		System.out.println("Subsets of size " + subset + ":");	// display 0 set 
+		if (subset == 0) {
+			System.out.println("( 0 )");
+		} else {
+			System.out.print("(");								// loop from 1 to 2^n
+			for (int i = (int) Math.pow(2, set.length); i > 0; i--) {
+				bincount = i; 									
+				num1s = 0;
+				binary = new int[set.length];
+
+				for (int j = binary.length; j > 0; j--) {		// conversion to binary
+					if (bincount > (int) Math.pow(2, j - 1)) { 	// check if binary position should be 1 if
+						binary[binary.length - j] = 1; 			// greater than or equal to 2 to the n
+						num1s++; 								// count how many 1s in array
+						bincount -= (int) Math.pow(2, j - 1); 	// next binary comparison
+					} else
+						binary[binary.length - j] = 0;
+				}
+				if (num1s == subset) {
+					System.out.print(" ( ");
+					for (int j = 0; j < binary.length; j++) { 	// check for ones and if the number
+						if (binary[j] == 1) {					// of ones is equal to the subset wanted
+							System.out.print(set[j] + " "); 		// then print
+						}
+					}System.out.print(")");			
+				}
+			}
+			System.out.print(" )");								// formatting
+		}
+	}
+}
+/*
+Enter a number to generate the set:
+5
+Enter a number to generate the subset of the entered set:
+3
+Subsets of size 3:
+( ( 1 2 3 ) ( 1 2 4 ) ( 1 2 5 ) ( 1 3 4 ) ( 1 3 5 ) ( 1 4 5 ) ( 2 3 4 ) ( 2 3 5 ) ( 2 4 5 ) ( 3 4 5 ) )
+*/
+
+/*Enter a number to generate the set:
+4
+Enter a number to generate the subset of the entered set:
+2
+Subsets of size 2:
+( ( 1 2 ) ( 1 3 ) ( 1 4 ) ( 2 3 ) ( 2 4 ) ( 3 4 ) )
+ */
