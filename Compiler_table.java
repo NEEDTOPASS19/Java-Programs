@@ -1,3 +1,10 @@
+/*
+This programs inputs a file and creates a symbol table using "proc","int",and,"real" as types.
+It also will tell what scope variables are 
+in at the point in the code a given by the
+"LEVEL" column. The test file is located 
+in the repository.
+*/
 import java.io.*;
 import java.util.*;
 
@@ -88,3 +95,18 @@ public class Compiler_table {
 	}
 
 }
+
+/*
+NAME  TYPE   LEVEL
+--------------------------------------------------
+main  proc   0   
+x     int    1   
+y     real   1   
+t1    proc   1   
+x     int    2   
+t2    proc   2   
+x     real   3   
+y     int    3   
+z     int    3   
+
+*/
