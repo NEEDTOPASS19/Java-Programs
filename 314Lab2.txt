@@ -1,4 +1,4 @@
-/*Gregory Thornton E01428586
+/*Gregory Thornton 
  *COSC 314 Winter  2018  Janurary 30, 2018
  *Lab 2
  *This Lab prompts user for a size n to create a n x n boolean matrix and
@@ -17,49 +17,45 @@ public class BooleanMatrixLab2 {
 
 		Scanner keyb = new Scanner(System.in);
 
-		System.out.println("What is the size of the matrix?");// prompt for matrix size
+		System.out.println("What is the size of the matrix?");		// prompt for matrix size
 		temp = keyb.nextInt();
-		mtrix = new int[temp][temp]; 						 // create array for matrix
+		mtrix = new int[temp][temp]; 					// create array for matrix
+		System.out.println("Input the matrix"); 			// prompt for matrix input
 
-		System.out.println("Input the matrix"); 				 // prompt for matrix input
-
-		for (int i = 0; i < mtrix.length; i++) { 			 // nested loop to input matrix values into array
+		for (int i = 0; i < mtrix.length; i++) { 			// nested loop to input matrix values into array
 			for (int j = 0; j < mtrix[i].length; j++) {
 				mtrix[i][j] = keyb.nextInt();
 			}
 		}
 
-		for (int i = 0; i < mtrix.length; i++) {					   // loop through each element of the matrix
+		for (int i = 0; i < mtrix.length; i++) {			 // loop through each element of the matrix
 			for (int j = 0; j < mtrix[i].length; j++) {
 				if (reflex == true && i == j && mtrix[i][j] != 1) { // check if reflexive flag is false
-					reflex = false; 								   // if not check if ordered pair violates reflexive rules
-					System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not reflexive");
-				}
-
-				if (sym == true && ((mtrix[i][j] == 1 && mtrix[j][i] == 0) 	// check symmetric flag is falseif not
-						|| (mtrix[i][j] == 0 && mtrix[j][i] == 1))) { 		// then check if pair violates symmetric
-																			// rules
-					sym = false;
-					System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not symmetric");
-				}
-
-				if (asym == true && mtrix[i][j] == 1 && mtrix[j][i] == 1 && i != j) { // check anti-symmetric flag is false
-																					// if not then check if pair violates 
-					asym = false; 													// anti-symmetric rules
+					reflex = false;	   // if not check if ordered pair violates reflexive rules
 					
-					System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not asymmetric");
+				System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not reflexive");
+				}
+
+			if (sym == true && ((mtrix[i][j] == 1 && mtrix[j][i] == 0) 	// check symmetric flag is falseif not
+						|| (mtrix[i][j] == 0 && mtrix[j][i] == 1))) { // then check if pair violates symmetric
+												// rules
+					sym = false;
+				System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not symmetric");
+				}
+
+				if (asym == true && mtrix[i][j] == 1 && mtrix[j][i] == 1 && i != j){ // check anti-symmetric flag 
+												// if not then check if pair violates 
+				asym = false; 							// anti-symmetric rule
+				System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not asymmetric");
 				}
 
 				if (trans == true && mtrix[i][j] == 1) { 	// check transitive flag is false
-					temp = 0; 								// temp to iterate/check all cases in matrix 
-															
-					while (temp < mtrix[j].length) {			// loop through to find first pair that violated 
-															// transitive rule
+					temp = 0;				// temp to iterate/check all cases in matrix 							while (temp < mtrix[j].length) {	// loop through to find first pair that violated 
+										// transitive rule
 						if (mtrix[j][temp] == 1 && mtrix[i][temp] != 1) {
-							trans = false;
-							System.out.println(
-									"(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not transitive");
-							break;
+						trans = false;
+						System.out.println("(" + (i + 1) + "," + (j + 1) + ")" + " " + "makes the matrix not transitive");
+						break;
 						}
 						temp++;
 					}
@@ -99,7 +95,7 @@ public class BooleanMatrixLab2 {
 	}
 }
 
-/*
+/* Code Output
 0 1 0 
 0 1 1
 1 1 0
