@@ -42,12 +42,12 @@ public class Main {
 		char[] tape = new char[1000];
 		for (int i = 0; i < tape.length; i++) {
 			tape[i] = 'B';
+			
 		}
-
 		int current, startState, input2, state, tapeInput, nextState, numStates, head, nextMove;
 		boolean accept = false;
 
-		System.out.print("Enter finite state acceptor file:");
+		System.out.print("Enter finite state acceptor file (i.e. file*) with * being 1-5 inclusive:");
 		input = keyb.next();
 
 		// Just in case improper file is input at command line
@@ -100,7 +100,7 @@ public class Main {
 			fileScan.nextLine();
 			input2 = fileScan.nextInt();
 			fileScan.nextLine();
-
+			System.out.println("state tapeInput nextState push move");
 			for (int i = 0; i < input2; i++) {
 				// Parse Each Rule Convert chars to numbers to store as Coordinates in Map
 				input = fileScan.next();
@@ -123,7 +123,7 @@ public class Main {
 				pushMap[state][tapeInput] = push;
 				moveMap[state][tapeInput] = move;
 
-				// System.out.println(state+" "+tapeInput+" "+nextState+" "+push+" "+move);
+				System.out.printf("%5s %9s %9s %4s %4s \n", state, tapeInput, nextState, push, move);
 			}
 
 			System.out.print("Enter input String:");
@@ -161,6 +161,7 @@ public class Main {
 
 					// push new value onto tape
 					tape[head] = pushMap[current][tapeInput];
+					
 
 					// Evaluate if Current reference is at final state
 					for (int states : finalStates) {
